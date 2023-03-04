@@ -148,6 +148,11 @@ main {
   outline: none;
 }
 
+.btn:disabled {
+  filter: grayscale(1);
+  cursor: default;
+}
+
 .dice {
   position: absolute;
   left: 50%;
