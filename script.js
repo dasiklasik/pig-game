@@ -2,6 +2,21 @@
 
 //Functions
 
+const init = () => {
+  scores = [0, 0]
+  currentNumber = 0
+  isPlaying = true
+  activePlayer = 0
+
+  document.querySelector('.player--0').classList.remove('player--winner')
+  document.querySelector('.player--1').classList.remove('player--winner')
+  document.querySelector('.player--0').classList.add('player--active')
+  document.querySelector('.player--1').classList.remove('player--active')
+  document.getElementById('score--0').textContent = '0'
+  document.getElementById('score--1').textContent = '0'
+  diceEl.classList.add('hidden')
+}
+
 const changePlayer = () => {
   currentNumber = 0
   document.querySelector(`.player--${activePlayer}`).classList.remove('player--active')
@@ -36,6 +51,7 @@ const holdScore = () => {
     isPlaying = false
     document.querySelector(`.player--${activePlayer}`).classList.add('player--winner')
     document.querySelector(`.player--${activePlayer}`).classList.remove('player--active')
+    diceEl.classList.add('hidden')
     holdBtn.disabled = true
     rollDiceBtn.disabled = true
   }
@@ -45,13 +61,14 @@ const holdScore = () => {
 const diceEl = document.querySelector('.dice')
 const rollDiceBtn = document.querySelector('.btn.btn--roll')
 const holdBtn = document.querySelector('.btn.btn--hold')
+const resetBtn = document.querySelector('.btn.btn--new')
 
 //Event listeners
 rollDiceBtn.addEventListener('click', rollDice)
 holdBtn.addEventListener('click', holdScore)
+resetBtn.addEventListener('click', init)
 
 //State
-const scores = [0, 0]
-let currentNumber = 0
-let activePlayer = 0
-let isPlaying = true
+let scores, currentNumber, activePlayer, isPlaying
+
+init()
